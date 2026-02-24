@@ -25,147 +25,146 @@ Enhanced Agent Zero extends the core capabilities of the base framework with spe
 
 ---
 
-## Installation
+## Installation Guide
 
 ### Prerequisites
 
-- **Python**: 3.9 or higher
-- **pip**: Python package manager
-- **Git**: Version control system
-- **Node.js & npm** (Optional, for full UI features)
+Before installing Enhanced Agent Zero, ensure you have the following installed on your system:
+
+- **Python 3.9 or higher**
+- **pip** (Python package installer, usually included with Python)
+- **Git** (Version control system)
+
+---
 
 ### Option 1: Docker (Recommended)
 
-The easiest way to run Enhanced Agent Zero is using Docker.
+The recommended way to run the Enhanced Agent Zero is to build and run it from this specific GitHub repository.
 
 1.  **Install Docker**:
-    - **Linux**: Follow the instructions for your distribution (e.g., `sudo apt-get install docker.io` or via snap).
-    - **Mac**: Download [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-
-2.  **Run with Docker**:
-
-    ```bash
-    # Pull the latest image
-    docker pull agent0ai/agent-zero
-
-    # Run the container
-    docker run -p 50001:80 -v $(pwd)/data:/a0/usr agent0ai/agent-zero
-    ```
-
-    Access the Web UI at `http://localhost:50001`.
-
-### Option 2: Installation on Linux (Step-by-Step)
-
-Follow these steps to set up the development environment on Linux.
-
-1.  **Open your terminal**.
+    - **Linux**: Follow the instructions for your distribution (e.g., `sudo apt-get install docker.io`).
+    - **Mac**: Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 2.  **Clone the repository**:
-
     ```bash
     git clone https://github.com/vaibhavmaurya20/Enhanced-Agentzero.git
     cd Enhanced-Agentzero
     ```
 
-3.  **Create a virtual environment** (to isolate dependencies):
-
+3.  **Build the Docker image**:
     ```bash
-    python3 -m venv venv
+    docker build -t enhanced-agent-zero -f docker/run/Dockerfile .
     ```
 
-4.  **Activate the virtual environment**:
-
+4.  **Run the container**:
     ```bash
-    source venv/bin/activate
+    docker run -p 50001:80 -v $(pwd)/data:/a0/usr enhanced-agent-zero
     ```
 
-5.  **Upgrade pip** (optional but recommended):
+5.  **Access the Interface**:
+    Open your browser and go to `http://localhost:50001`.
 
-    ```bash
-    pip install --upgrade pip
-    ```
+---
 
-6.  **Install dependencies**:
+### Option 2: Installation on Linux (Step-by-Step)
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+Follow these steps to set up and run Enhanced Agent Zero directly on Linux.
 
-7.  **Run the Web UI**:
-
-    ```bash
-    python run_ui.py
-    ```
-
-8.  **Access the Agent**: Open your browser and go to `http://localhost:5000` (or check the terminal for the specific port).
-
-### Option 3: Installation on macOS (Step-by-Step)
-
-Follow these steps for macOS setup.
-
-1.  **Install Python 3**:
-    - The easiest way is using Homebrew.
-    - If you don't have Homebrew, install it from [brew.sh](https://brew.sh/).
-    - Install Python:
-
-    ```bash
-    brew install python3
-    brew install git
-    ```
+1.  **Open your terminal**.
 
 2.  **Clone the repository**:
-
     ```bash
     git clone https://github.com/vaibhavmaurya20/Enhanced-Agentzero.git
     cd Enhanced-Agentzero
     ```
 
 3.  **Create a virtual environment**:
-
     ```bash
     python3 -m venv venv
     ```
 
 4.  **Activate the virtual environment**:
-
     ```bash
     source venv/bin/activate
     ```
 
-5.  **Upgrade pip**:
-
+5.  **Upgrade pip** (Optional but recommended):
     ```bash
     pip install --upgrade pip
     ```
 
 6.  **Install dependencies**:
-
-    **Note**: Some bioinformatics libraries might require system-level tools. You can install them via Homebrew:
-
     ```bash
-    brew install gcc  # Required for some Python packages
     pip install -r requirements.txt
     ```
 
-7.  **Run the Web UI**:
-
+7.  **Run Enhanced Agent Zero**:
     ```bash
     python run_ui.py
     ```
 
-    Access the interface in your browser at the address shown in the terminal.
+8.  **Access the Interface**:
+    Open your web browser and navigate to `http://localhost:5000`.
+
+---
+
+### Option 3: Installation on macOS (Step-by-Step)
+
+Follow these steps for macOS setup. If you do not have Homebrew installed, it is the easiest way to manage packages.
+
+1.  **Install Homebrew** (if not already installed):
+    Run the install command from [brew.sh](https://brew.sh/).
+
+2.  **Install Python 3 and Git**:
+    ```bash
+    brew install python3 git
+    ```
+
+3.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/vaibhavmaurya20/Enhanced-Agentzero.git
+    cd Enhanced-Agentzero
+    ```
+
+4.  **Create a virtual environment**:
+    ```bash
+    python3 -m venv venv
+    ```
+
+5.  **Activate the virtual environment**:
+    ```bash
+    source venv/bin/activate
+    ```
+
+6.  **Upgrade pip**:
+    ```bash
+    pip install --upgrade pip
+    ```
+
+7.  **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+8.  **Run Enhanced Agent Zero**:
+    ```bash
+    python run_ui.py
+    ```
+
+9.  **Access the Interface**:
+    Open your web browser and go to the address shown in your terminal.
 
 ---
 
 ## Configuration
 
-After launching, you will need to configure your AI Provider API keys (e.g., OpenAI, Anthropic, etc.) in the "Settings" section of the Web UI to enable full functionality.
+After launching the agent, open the Web UI. You will need to configure your AI Provider API keys (e.g., OpenAI, Anthropic, Groq) in the "Settings" section to enable full functionality.
 
 ## Troubleshooting
 
-- **Port Already in Use**: If you get an error about port 5000 being in use, the framework will automatically try the next available port (e.g., 5001).
-- **Permission Denied**: Ensure you have permissions to write in the installation directory.
-- **Dependencies Fail**: Ensure `python3` and `pip` are correctly installed and up to date.
+- **Port Already in Use**: If you encounter an error about port 5000 (Linux/Mac) or 50001 (Docker) being in use, the framework will automatically try the next available port.
+- **Permission Denied**: Ensure you have write permissions for the folder where you cloned the repository.
+- **Dependencies Fail**: Ensure `python3`, `pip`, and `git` are correctly installed and up to date.
 
 ---
 
